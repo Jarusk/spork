@@ -15,6 +15,10 @@ rust:
   # check it compiles on the latest stable compiler
   - stable
 
+matrix:
+  allow_failures:
+    - rust: nightly
+
 # load travis-cargo
 before_script:
   - |
