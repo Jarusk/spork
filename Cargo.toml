@@ -1,0 +1,6 @@
+[package]
+name = "spork"
+version = "0.1.0"
+authors = ["Matthew Yaraskavitch <matthew.yaraskavitch@mitel.com>"]
+
+[dependencies]
