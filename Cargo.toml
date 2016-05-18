@@ -8,7 +8,7 @@ description = "A Rusty key-object store for embedded applications"
 
 documentation = "https://jarusk.github.io/Spork"
 repository = "https://github.com/Jarusk/Spork"
-license = "GPL-3.0"
+license = "MIT"
 
 [dependencies]
 num_cpus = "0.2.12"
