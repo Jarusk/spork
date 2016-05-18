@@ -3,4 +3,11 @@ name = "spork"
 version = "0.0.1"
 authors = ["Matthew Yaraskavitch <matthew.yaraskavitch@mitel.com>"]
 
+description = "A Rusty key-object store for embedded applications"
+#keywords = [""]
+
+#documentation = ""
+repository = "https://github.com/Jarusk/Spork"
+license = "GPL-3.0"
+
 [dependencies]
