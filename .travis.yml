@@ -14,9 +14,6 @@ rust:
   - beta
   # check it compiles on the latest stable compiler
   - stable
-  # and the first stable one (this should be bumped as the minimum
-  # Rust version required changes)
-  - 1.7.0
 
 # load travis-cargo
 before_script:
@@ -29,7 +26,7 @@ script:
   - |
       travis-cargo build &&
       travis-cargo test &&
-      # travis-cargo --only stable doc
+      travis-cargo --only stable doc
 after_success:
   # upload the documentation from the build with stable (automatically only actually
   # runs on the master branch, not individual PRs)
