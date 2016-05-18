@@ -6,8 +6,8 @@ authors = ["Jarusk"]
 description = "A Rusty key-object store for embedded applications"
 #keywords = [""]
 
-documentation = "https://jarusk.github.io/Spork"
-repository = "https://github.com/Jarusk/Spork"
+documentation = "https://jarusk.github.io/spork"
+repository = "https://github.com/Jarusk/spork"
 license = "MIT"
 
 [dependencies]
