@@ -1,4 +1,4 @@
 # Spork
 
 
-A Rust key-value store
+A Rust key-value store like **Redis**, but embedded
