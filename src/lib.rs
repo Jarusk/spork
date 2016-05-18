@@ -7,7 +7,9 @@
 
 #[cfg(test)]
 mod tests {
+    //! The tests module
     #[test]
+    /// Our first test
     fn it_works() {
     }
 }
