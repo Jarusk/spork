@@ -9,6 +9,10 @@ addons:
       - libdw-dev
 
 # run builds for all the trains (and more)
+os:
+  - linux
+  - osx
+
 rust:
   - stable
   - beta
