@@ -5,4 +5,4 @@
 
 A Rusty key-value store like **Redis**, but embedded.
 
-*If Seth Rogen was REDIS and Katherine Heigl was SQLite, they's make __Spork__*
+*If Seth Rogen was REDIS and Katherine Heigl was SQLite, they'd make __Spork__*
