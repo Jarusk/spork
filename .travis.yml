@@ -10,10 +10,9 @@ addons:
 
 # run builds for all the trains (and more)
 rust:
-  - nightly
-  - beta
-  # check it compiles on the latest stable compiler
   - stable
+  - beta
+  - nightly
 
 matrix:
   allow_failures:
