@@ -6,7 +6,7 @@ authors = ["Matthew Yaraskavitch <matthew.yaraskavitch@mitel.com>"]
 description = "A Rusty key-object store for embedded applications"
 #keywords = [""]
 
-#documentation = ""
+documentation = "https://jarusk.github.io/Spork"
 repository = "https://github.com/Jarusk/Spork"
 license = "GPL-3.0"
 
