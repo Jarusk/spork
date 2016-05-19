@@ -14,7 +14,8 @@ matrix:
 script:
   - cargo build
   - cargo test
-  - [ $TRAVIS_RUST_VERSION == stable ] && cargo doc
+  - |
+    [ $TRAVIS_RUST_VERSION == stable ] && cargo doc
 
 after_success: |
   [ $TRAVIS_BRANCH = master ] &&
