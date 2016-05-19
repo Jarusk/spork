@@ -4,12 +4,3 @@
        html_root_url = "https://jarusk.github.io/spork")]
 //! Some sample documentation
 //!
-
-#[cfg(test)]
-mod tests {
-    //! The tests module
-    #[test]
-    /// Our first test
-    fn it_works() {
-    }
-}
