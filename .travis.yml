@@ -12,7 +12,7 @@ matrix:
 script:
   - cargo build
   - cargo test
-  - if [[ $TRAVIS_RUST_VERSION == stable ] && [ $TRAVIS_OS_NAME == linux ]]; then cargo doc; fi
+  - if [ $TRAVIS_RUST_VERSION == stable ] && [ $TRAVIS_OS_NAME == linux ]; then cargo doc; fi
 
 after_success: |
   [ $TRAVIS_BRANCH = master ] &&
