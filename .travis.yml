@@ -12,12 +12,13 @@ matrix:
 script:
   - cargo build
   - cargo test
-  - if [ $TRAVIS_RUST_VERSION == stable ]; then cargo doc; fi
+  - if [[ $TRAVIS_RUST_VERSION == stable ] && [ $TRAVIS_OS_NAME == linux ]]; then cargo doc; fi
 
 after_success: |
   [ $TRAVIS_BRANCH = master ] &&
   [ $TRAVIS_PULL_REQUEST = false ] &&
   [ $TRAVIS_RUST_VERSION = stable ] &&
+  [ $TRAVIS_OS_NAME = linux ] &&
   echo '<meta http-equiv=refresh content=0;url=spork/index.html>' > target/doc/index.html &&
   pip install ghp-import --user $USER &&
   $HOME/.local/bin/ghp-import -n target/doc &&
