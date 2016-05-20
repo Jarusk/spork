@@ -5,4 +5,4 @@
 
 
 
-A Rusty key-value store like **Redis**, but embedded.
+A Rusty embedded key-value store like **RocksDB**. Goal is to have a pure Rust implementation for inclusion in larger projects.
