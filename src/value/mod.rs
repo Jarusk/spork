@@ -1,25 +1,63 @@
-//! This module will hold the generic structs to wrap the arbitrary types
+//! This module will hold the generic structs to wrap the arbitrary types being stored
 
-use std::collections::HashMap;
-
-struct Key {
-    val: String,
-    created: String
+/// A genreal structure to hide the actual content being stored in the KV store
+/// At some point, may forgo this. However, right now, provides a good way of forcing
+/// stored objects to be on the heap.
+pub struct Value<T: Clone> {
+    val: Box<T>
 }
 
-struct Dictionary {
-    store: HashMap<String, String>
+impl <T:Clone> Value<T> {
+    pub fn new(store: T) -> Value<T> {
+        return Value{val: Box::new(store)};
+    }
 
+    pub fn get_val(&self) -> Box<T> {
+        return self.val.clone();
+    }
 }
 
-#[test]
-fn box_check() {
-    let x = Box::new(6);
-    assert_eq!(6,*x);
-}
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-#[test]
-fn store_test() {
-    let x = Box::new(Key{val:"Matt".to_string(), created:"Today".to_string()});
-    assert_eq!("Matt",x.val);
+    #[test]
+    fn store_str() {
+        let x = Value::new("Hello World!");
+    }
+
+    #[test]
+    fn get_str() {
+        let x = Value::new("Hello World!");
+        let y = x.get_val();
+        let z = x.get_val();
+        assert_eq!(*y,"Hello World!");
+        assert_eq!(*z,"Hello World!");
+        assert_eq!(*y,*z);
+    }
+
+    #[test]
+    fn store_String() {
+        let x = Value::new("Hello World!".to_string());
+    }
+
+    #[test]
+    fn get_String() {
+        let x = Value::new("Hello World!".to_string());
+        let y = x.get_val();
+        let z = x.get_val();
+        assert_eq!(*y,"Hello World!".to_string());
+        assert_eq!(*z,"Hello World!".to_string());
+        assert_eq!(*y,*z);
+    }
+
+    #[test]
+    fn store_int() {
+        let x = Value::new(356);
+    }
+
+    #[test]
+    fn store_float() {
+        let x = Value::new(123.456);
+    }
 }
