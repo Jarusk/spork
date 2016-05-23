@@ -8,5 +8,5 @@
 
 extern crate num_cpus;
 
-
-pub mod values;
+pub mod key;
+pub mod value;
