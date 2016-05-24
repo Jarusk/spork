@@ -8,10 +8,14 @@ pub struct Value<T: Clone> {
 }
 
 impl <T:Clone> Value<T> {
+
+    /// Returns a new instance of the 'Value' struct.
+    /// Holds the data pointed to by the 'Key'
     pub fn new(store: T) -> Value<T> {
         return Value{val: Box::new(store)};
     }
 
+    /// Returns a Box to the value stored
     pub fn get_val(&self) -> Box<T> {
         return self.val.clone();
     }
