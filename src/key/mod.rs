@@ -1,10 +1,12 @@
 //! This module defines the keys for our KV pair
 
+extern crate time;
+
 /// A struct to store the key and it's metadata
 pub struct Key {
     val: &'static str,
     stored_type: &'static str,
-    created: &'static str
+    created: time::Tm
 }
 
 impl Key {
@@ -14,7 +16,7 @@ impl Key {
         return Key{
                     val: val,
                     stored_type: stored_type,
-                    created: "Now"
+                    created: time::now()
                 };
     }
 
@@ -24,7 +26,7 @@ impl Key {
     }
 
     /// Returns the time datetime of creation of the key
-    pub fn get_created(&self) -> &'static str {
+    pub fn get_created(&self) -> time::Tm {
         return self.created.clone();
     }
 
@@ -38,6 +40,7 @@ impl Key {
 #[cfg(test)]
 mod tests {
     use super::*;
+    extern crate time;
 
     #[test]
     fn create_key() {
@@ -48,7 +51,8 @@ mod tests {
     #[test]
     fn get_key_creation() {
         let x = Box::new(Key::new("user.test","u64"));
-        assert_eq!(x.get_created(), "Now");
+        let result = time::now() - x.get_created();
+        assert!(result.num_milliseconds() < 100);
     }
 
     #[test]
