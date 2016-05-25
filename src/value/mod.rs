@@ -27,7 +27,9 @@ mod tests {
 
     #[test]
     fn store_str() {
-        let x = Value::new("Hello World!");
+        let phrase = "Hello World!";
+        let x = Value::new(&phrase);
+        assert_eq!(*x.val,&phrase);
     }
 
     #[test]
@@ -41,12 +43,14 @@ mod tests {
     }
 
     #[test]
-    fn store_String() {
-        let x = Value::new("Hello World!".to_string());
+    fn store_string() {
+        let phrase = "Hello World!".to_string();
+        let x = Value::new(&phrase);
+        assert_eq!(*x.val,&phrase);
     }
 
     #[test]
-    fn get_String() {
+    fn get_string() {
         let x = Value::new("Hello World!".to_string());
         let y = x.get_val();
         let z = x.get_val();
@@ -57,11 +61,15 @@ mod tests {
 
     #[test]
     fn store_int() {
-        let x = Value::new(356);
+        let myint = 356;
+        let x = Value::new(myint);
+        assert_eq!(*x.val, myint);
     }
 
     #[test]
     fn store_float() {
-        let x = Value::new(123.456);
+        let myfloat = 123.456;
+        let x = Value::new(myfloat);
+        assert_eq!(*x.val, myfloat);
     }
 }
