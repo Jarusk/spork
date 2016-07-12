@@ -2,40 +2,60 @@
 
 extern crate time;
 
+use std::hash::{Hash, Hasher};
+
 /// A struct to store the key and it's metadata
-pub struct Key {
-    val: &'static str,
-    stored_type: &'static str,
-    created: time::Tm
+pub struct Key<'a> {
+    name: &'a str,
+    created: time::Tm,
+    updated: time::Tm,
 }
 
-impl Key {
-
+impl<'a> Key<'a> {
     /// Creates a new instance of 'Key' given the supplied label of the key
-    pub fn new(val: &'static str, stored_type: &'static str) -> Key {
-        return Key{
-                    val: val,
-                    stored_type: stored_type,
-                    created: time::now()
-                };
+    pub fn new(name: &'a str) -> Key<'a> {
+        Key {
+            name: name,
+            created: time::now(),
+            updated: time::now(),
+        }
     }
 
     /// Returns the indexed label of the given key
-    pub fn get_label(&self) -> &'static str {
-        return self.val.clone();
+    pub fn get_label(&self) -> &'a str {
+        self.name
     }
 
     /// Returns the time datetime of creation of the key
-    pub fn get_created(&self) -> time::Tm {
-        return self.created.clone();
+    pub fn get_created(&self) -> &time::Tm {
+        &self.created
     }
 
-    /// Returns the type of the value the key points to
-    pub fn get_type(&self) -> &'static str {
-        return self.stored_type.clone();
+    /// Returns the datetime of last key/value update
+    pub fn get_updated(&self) -> &time::Tm {
+        &self.updated 
     }
 
+    /// Updates the update_tm of the key to relfect a change in 
+    /// the Value it links to
+    pub fn update_tm(&mut self) {
+        self.updated = time::now();
+    }
 }
+
+impl<'a> Hash for Key<'a> {
+    fn hash<H: Hasher>(&self, hasher: &mut H) {
+        hasher.write(self.name.as_bytes());
+        hasher.finish();
+    }
+}
+
+impl<'a> PartialEq for Key<'a> {
+  fn eq(&self, other: &Key) -> bool {
+      self.name == other.name
+    }
+}
+
 
 #[cfg(test)]
 mod tests {
@@ -44,26 +64,20 @@ mod tests {
 
     #[test]
     fn create_key() {
-        let x = Box::new(Key::new("user.test","u64"));
-        assert_eq!(x.stored_type, "u64");
+        let x = Key::new("user.test");
+        assert_eq!(x.name, "user.test");
     }
 
     #[test]
     fn get_key_creation() {
-        let x = Box::new(Key::new("user.test","u64"));
-        let result = time::now() - x.get_created();
+        let x = Key::new("user.test");
+        let result = time::now() - *x.get_created();
         assert!(result.num_milliseconds() < 100);
     }
 
     #[test]
-    fn get_key_stored_type() {
-        let x = Box::new(Key::new("user.test", "i32"));
-        assert_eq!(x.get_type(), "i32");
-    }
-
-    #[test]
     fn get_label() {
-        let x = Box::new(Key::new("user.test", "i32"));
+        let x = Key::new("user.test");
         assert_eq!(x.get_label(), "user.test");
     }
 }
