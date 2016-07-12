@@ -7,6 +7,6 @@
 //!
 
 extern crate num_cpus;
+mod str_map;
 
-pub mod key;
-pub mod value;
+pub use str_map::StrMap as Spork;

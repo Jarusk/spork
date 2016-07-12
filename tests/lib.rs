@@ -1,6 +1,7 @@
 extern crate spork;
 
-use std::collections::HashMap;
+use spork::Spork;
+
 
 #[test]
 fn it_works() {
@@ -9,17 +10,17 @@ fn it_works() {
 
 #[test]
 fn test_hash_map() {
-    let mut map = Box::new(HashMap::new());
+    let mut map = Spork::new();
     map.insert("Daniel", "798-1364");
     map.insert("Daniel", "164-6743");
-    assert_eq!(map.get("Daniel").unwrap().to_string(),"164-6743");
+    assert_eq!(map.get("Daniel").unwrap(),"164-6743");
 }
 
 #[test]
 #[should_panic(expected = "assertion failed")]
 fn test_hash_map_should_fail() {
-    let mut map = Box::new(HashMap::new());
+    let mut map = Spork::new();
     map.insert("Daniel", "798-1364");
     map.insert("Daniel", "164-6743");
-    assert_eq!(map.get("Daniel").unwrap().to_string(),"798-1364");
+    assert_eq!(map.get("Daniel").unwrap(),"798-1364");
 }
