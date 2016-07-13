@@ -8,5 +8,5 @@
 
 extern crate num_cpus;
 mod str_map;
-
+mod wrapped_val;
 pub use str_map::StrMap as Spork;
