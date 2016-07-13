@@ -11,5 +11,4 @@ repository = "https://github.com/Jarusk/spork"
 license = "MIT"
 
 [dependencies]
-num_cpus = "0.2.12"
 time = "0.1.35"
