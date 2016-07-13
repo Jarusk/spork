@@ -6,12 +6,12 @@ use wrapped_val::WrappedVal;
 #[derive(Clone,Debug)]
 pub struct StrMap<'a> {
     created: time::Tm,
-    map: HashMap<&'a str, WrappedVal<'a, &'a str>>
+    map: Box<HashMap<&'a str, WrappedVal<'a, &'a str>>>
 }
 
 impl<'a> StrMap<'a> {
     pub fn new() -> StrMap<'a> {
-       StrMap {created: time::now(), map: HashMap::new()} 
+       StrMap {created: time::now(), map: Box::new(HashMap::new())} 
     }
 
     pub fn insert(&mut self, key: &'a str, val: &'a str) -> Option<WrappedVal<&'a str>> {
