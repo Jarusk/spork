@@ -1,6 +1,6 @@
 [package]
 name = "spork"
-version = "0.0.6"
+version = "0.0.7"
 authors = ["Matt Yaraskavitch <yaraskavitch.matt@gmail.com>"]
 
 description = "A Rusty key-object store for embedded applications"
@@ -11,4 +11,4 @@ repository = "https://github.com/Jarusk/spork"
 license = "MIT"
 
 [dependencies]
-time = "0.1.35"
+time = "^0.1.37"
