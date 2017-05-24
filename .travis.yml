@@ -4,7 +4,7 @@ rust:
   - stable
   - beta
   - nightly
-  
+
 os:
   - linux
   - osx
@@ -12,6 +12,19 @@ os:
 matrix:
   allow_failures:
     - rust: nightly
+
+before_install:
+  - sudo apt-get update
+
+addons:
+  apt:
+    packages:
+      - libcurl4-openssl-dev
+      - libelf-dev
+      - libdw-dev
+      - cmake
+      - gcc
+      - binutils-dev
 
 script:
   - cargo build
@@ -26,4 +39,16 @@ after_success: |
   pip install ghp-import --user $USER &&
   $HOME/.local/bin/ghp-import -n target/doc &&
   git push -qf https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages &&
-  bash <(curl -s https://codecov.io/bash)
+  wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz &&
+  tar xzf master.tar.gz &&
+  cd kcov-master &&
+  mkdir build &&
+  cd build &&
+  cmake .. &&
+  make &&
+  sudo make install &&
+  cd ../.. &&
+  rm -rf kcov-master &&
+  for file in target/debug/spork-*[^\.d]; do mkdir -p "target/cov/$(basename $file)"; kcov --exclude-pattern=/.cargo,/usr/lib --verify "target/cov/$(basename $file)" "$file"; done &&
+  bash <(curl -s https://codecov.io/bash) &&
+  echo "Uploaded code coverage"
