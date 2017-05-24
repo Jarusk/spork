@@ -29,9 +29,9 @@ script:
   - if [ $TRAVIS_RUST_VERSION == stable ] && [ $TRAVIS_OS_NAME == linux ]; then cargo doc; fi
 
 after_success: |
-  [ $TRAVIS_BRANCH = master ] &&
-  [ $TRAVIS_RUST_VERSION = stable ] &&
-  [ $TRAVIS_OS_NAME = linux ] &&
+  if [ $TRAVIS_BRANCH == master ] &&
+  [ $TRAVIS_RUST_VERSION == stable ] &&
+  [ $TRAVIS_OS_NAME == linux ]; then \
   echo '<meta http-equiv=refresh content=0;url=spork/index.html>' > target/doc/index.html &&
   pip install ghp-import --user $USER &&
   $HOME/.local/bin/ghp-import -n target/doc &&
@@ -48,4 +48,5 @@ after_success: |
   rm -rf kcov-master &&
   for file in target/debug/spork-*[^\.d]; do mkdir -p "target/cov/$(basename $file)"; kcov --exclude-pattern=/.cargo,/usr/lib --verify "target/cov/$(basename $file)" "$file"; done &&
   bash <(curl -s https://codecov.io/bash) &&
-  echo "Uploaded code coverage"
+  echo "Uploaded code coverage";
+  fi
