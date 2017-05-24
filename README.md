@@ -5,3 +5,5 @@
 
 
 A Rusty embedded, in-memory key-value store somewhere between **Redis** and **RocksDB**. Goal is to have a pure Rust library implementation for inclusion in larger projects.
+
+This isn't abandonware, I've just been busy. Currently rethinking... (May 2017)
