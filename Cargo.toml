@@ -1,6 +1,6 @@
 [package]
 name = "spork"
-version = "0.0.7"
+version = "0.0.6"
 authors = ["Matt Yaraskavitch <yaraskavitch.matt@gmail.com>"]
 
 description = "A Rusty key-object store for embedded applications"
